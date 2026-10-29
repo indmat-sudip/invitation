@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Invitation link maker</title>
+<style>
+  :root{--red:#7a0f1e;--gold:#e2b24a;--gold2:#b8862b;--cream:#fbf0da;--ink:#4a1218}
+  *{box-sizing:border-box}
+  body{margin:0;font:17px/1.5 Georgia,serif;background:var(--cream);color:var(--ink);padding:1.2rem}
+  main{max-width:640px;margin:0 auto}
+  h1{color:var(--red);font-weight:500;margin:.2rem 0}
+  p.hint{color:#7a4a40;font-size:.95rem}
+  label{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#7a4a40;margin:1rem 0 .3rem}
+  textarea,input,select{width:100%;font:inherit;padding:.7rem;border:1px solid var(--gold2);border-radius:3px;background:#fffaf0;color:var(--ink)}
+  textarea{min-height:150px}
+  button,a.b{font:inherit;cursor:pointer;border:1px solid var(--red);background:var(--red);color:var(--cream);padding:.6rem 1rem;border-radius:3px;text-decoration:none;display:inline-block}
+  button.alt,a.b.alt{background:transparent;color:var(--red)}
+  .row{display:grid;gap:.5rem;padding:.9rem;border:1px solid var(--gold2);border-radius:4px;background:#fff8e8;margin-top:.8rem}
+  .row b{font-size:1.1rem}
+  .row code{font-size:.78rem;word-break:break-all;color:#7a4a40}
+  .acts{display:flex;gap:.5rem;flex-wrap:wrap}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Invitation link maker</h1>
+  <p class="hint">Type one guest per line. Add a personal message after a <b>|</b> if you like. Each guest gets their own link that greets them by name.</p>
+
+  <label for="list">Guests</label>
+  <textarea id="list" placeholder="Rina Di
+Tapan Kaku | Kaku, your blessings mean the world to us. Please come early!
+Sourav Da | Come with the whole family!"></textarea>
+
+  <div class="two">
+    <div>
+      <label for="lang">Language</label>
+      <select id="lang"><option value="en">English</option><option value="bn">বাংলা (Bengali)</option></select>
+    </div>
+    <div>
+      <label for="base">Invitation page address</label>
+      <input id="base">
+    </div>
+  </div>
+
+  <label for="share">Message to send with the link (WhatsApp)</label>
+  <input id="share" value="You are warmly invited to our wedding. Please open your invitation:">
+
+  <p><button id="go" type="button">Make links</button></p>
+  <div id="out"></div>
+</main>
+<script>
+(function(){
+  var $ = function(s){return document.querySelector(s)};
+  $("#base").value = location.protocol === "file:" ? "https://YOUR-USERNAME.github.io/YOUR-REPO/" : location.href.replace(/generator\.html.*$/, "");
+  function esc(s){return String(s).replace(/[&<>"']/g,function(m){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
+  $("#go").addEventListener("click", function(){
+    var base = $("#base").value.trim().replace(/index\.html$/, ""); if (base && !/\/$/.test(base)) base += "/";
+    var lang = $("#lang").value, share = $("#share").value.trim(), out = $("#out"); out.innerHTML = "";
+    $("#list").value.split(/\n+/).forEach(function(line){
+      line = line.trim(); if (!line) return;
+      var i = line.indexOf("|"), name = (i < 0 ? line : line.slice(0, i)).trim(), msg = i < 0 ? "" : line.slice(i + 1).trim();
+      var q = "?to=" + encodeURIComponent(name) + (msg ? "&m=" + encodeURIComponent(msg) : "") + (lang === "bn" ? "&lang=bn" : "");
+      var url = base + q;
+      var wa = "https://wa.me/?text=" + encodeURIComponent(share + "\n" + url);
+      var row = document.createElement("div"); row.className = "row";
+      row.innerHTML = "<b>" + esc(name) + "</b><code>" + esc(url) + '</code><div class="acts"><button type="button" class="copy">Copy link</button><a class="b alt" target="_blank" rel="noopener" href="' + esc(wa) + '">Send on WhatsApp</a></div>';
+      row.querySelector(".copy").addEventListener("click", function(e){
+        var b = e.target; (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function(){ b.textContent = "Copied ✓"; }).catch(function(){ prompt("Copy this link:", url); });
+      });
+      out.appendChild(row);
+    });
+  });
+})();
+</script>
+</body>
+</html>
