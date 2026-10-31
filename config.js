@@ -139,5 +139,6 @@ window.INVITE = {
   /* ---------- Music ----------
      mode "synth": a soft built-in Indian-style tune (tanpura drone + flute), no file needed.
      file: put your own mp3 in this folder (e.g. "music.mp3") to use it instead (e.g. shehnai). */
-  music: { mode: "synth", file: "" }      // mode: "synth" | "off"
+  // music: { mode: "synth", file: "" }      // mode: "synth" | "off"
+  music: { mode: "synth", file: "music.mp3" }
 };
