@@ -9,12 +9,13 @@ window.INVITE = {
 
   /* ---------- The couple ---------- */
   partner1: {
+    name: { en: "Sudip", bn: "সুদীপ" },
+    parents: { en: "Son of Mr. & Mrs. Shil", bn: "শ্রী ও শ্রীমতী শীলের পুত্র" }
+  },
+
+  partner2: {
     name: { en: "Thitika", bn: "তিথিকা" },
     parents: { en: "Daughter of Mr. & Mrs. Char", bn: "শ্রী ও শ্রীমতী চারের কন্যা" }
-  },
-  partner2: {
-    name: { en: "Sudip", bn: "সুদীপ" },
-    parents: { en: "Son of Mr. & Mrs. Banerjee", bn: "শ্রী ও শ্রীমতী শীলের পুত্র" }
   },
 
   blessing: { en: "Shubho Bibaho", bn: "শুভ বিবাহ" },   // shown at the top (you can use e.g. "শ্রী শ্রী গণেশায় নমঃ")
@@ -24,11 +25,11 @@ window.INVITE = {
   },
 
   /* ---------- Main wedding day ---------- */
-  date: "2027-01-24T18:30:00+05:30",       // used for the countdown and calendar (+05:30 = India)
+  date: "2027-01-26T18:30:00+05:30",       // used for the countdown and calendar (+05:30 = India)
   venue: {
     name: { en: "The Grand Palace Lawns", bn: "দ্য গ্র্যান্ড প্যালেস লনস" },
-    city: { en: "Kolkata, West Bengal", bn: "কলকাতা, পশ্চিমবঙ্গ" },
-    mapsUrl: "https://maps.google.com/?q=Kolkata"
+    city: { en: "Asansole, West Bengal", bn: "আসানসোল, পশ্চিমবঙ্গ" },
+    mapsUrl: "https://maps.google.com/?q=Asansole"
   },
 
   /* ---------- Personal message ----------
@@ -40,7 +41,7 @@ window.INVITE = {
       en: "Your blessings and your presence will make our special day complete. We would be so happy to celebrate it with you.",
       bn: "আপনার আশীর্বাদ ও উপস্থিতি আমাদের এই বিশেষ দিনটিকে পূর্ণ করবে। আপনাকে পাশে পেলে আমরা খুব আনন্দিত হব।"
     },
-    signature: { en: "With love, Ananya & Rohan", bn: "ভালোবাসায়, অনন্যা ও রোহন" }
+    signature: { en: "With love, Sudip & Tithika", bn: "ভালোবাসায়, সুদীপ ও তিথিকা" }
   },
 
   /* ---------- Our story ---------- */
@@ -96,12 +97,12 @@ window.INVITE = {
       venue: { en: "The Grand Palace Lawns", bn: "দ্য গ্র্যান্ড প্যালেস লনস" },
       text: { en: "The sacred rituals of the wedding.", bn: "বিবাহের পবিত্র আচার-অনুষ্ঠান।" }
     },
-    {
-      title: { en: "Bou Bhaat (Reception)", bn: "বৌভাত" },
-      date: "2027-01-25", time: { en: "7:30 PM", bn: "সন্ধ্যা ৭:৩০" },
-      venue: { en: "Groom's family home", bn: "বরের বাড়ি" },
-      text: { en: "A feast to welcome the bride into the family.", bn: "নতুন বধূকে পরিবারে বরণ করে নেওয়ার ভোজ।" }
-    }
+    // {
+    //   title: { en: "Bou Bhaat (Reception)", bn: "বৌভাত" },
+    //   date: "2027-01-25", time: { en: "7:30 PM", bn: "সন্ধ্যা ৭:৩০" },
+    //   venue: { en: "Groom's family home", bn: "বরের বাড়ি" },
+    //   text: { en: "A feast to welcome the bride into the family.", bn: "নতুন বধূকে পরিবারে বরণ করে নেওয়ার ভোজ।" }
+    // }
   ],
 
   dressCode: {
